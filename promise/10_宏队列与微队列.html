@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>10_宏队列与微队列</title>
+</head>
+<body>
+  <script>
+    setTimeout(() => {
+        console.log('setTimeout1')
+        Promise.resolve(3).then(value => {
+          console.log('onResolved3', value)
+        })
+      })
+
+      setTimeout(() => {
+        console.log('setTimeout2')
+      })
+
+      Promise.resolve(1).then(value => {
+        console.log('onResolved1', value)
+      })
+
+      Promise.resolve(2).then(value => {
+        console.log('onResolved2', value)
+      })
+    //所以微队列的优先级更高
+  </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>04_promiseåŸºæœ¬ä½¿ç”¨</title>
+</head>
+<body>
+  <script>
+    //1.创建一个新的promise对象
+    const p = new Promise((resolve,reject) => {
+      //2.执行异步操作任务
+        setTimeout(() => {
+          const time = Date.now();
+          if(time%2 == 0){
+            resolve('成功的数据，time= '+time);
+          }
+          else{
+            reject('失败的数据，time= '+time);
+          }
+        }, 1000);
+      //3.1 如果执行成功了，调用resolve(value)
+      //3.2 如果执行失败了，调用reject(reason)
+    })
+    p.then(
+      value => {
+        //接受得到成功的value   onResolved
+        console.log('成功的回调', value);
+      },
+      reason => {
+        //接受得到失败的reason  onRejected
+        console.log('失败的的回调', reason);
+      }
+    )
+  </script>
+</body>
+</html>
