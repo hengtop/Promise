@@ -106,6 +106,17 @@ class Promise {
     return this.then(undefined, onRejected);
   }
 
+  finally(callback){
+    return this.then(
+      value => {
+        return Promise.resolve(callback()).then(() => value)
+      },
+      reason => {
+        return  Promise.reject(callback()).then(() => {throw reason})
+      }
+    )
+  }
+
   static resolve = function (value) {
     return new Promise((resolve, reject) => {
       if (value instanceof Promise) {
